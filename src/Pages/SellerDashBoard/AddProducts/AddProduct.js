@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProduct = () => {
   const {user} = useContext(AuthContext)
+  console.log(user)
   // const imagesHostKey = process.env.REACT_APP_imgbb_key;
   const { data: categores, isLoading } = useQuery({
     queryKey: ["category"],
@@ -33,17 +34,10 @@ const AddProduct = () => {
     const orginal_price = form.orginal_price.value;
     const condition = form.condition.value;
     const yearOfPurchase = form.yearOfPurchase.value;
-   
-    let currentdate = new Date(); 
+    const location = form.location.value
+    
     const date = new Date().toLocaleString();
-    // let datetime = "Last Sync: " + currentdate.getDate() + "/"
-    //             + (currentdate.getMonth()+1)  + "/" 
-    //             + currentdate.getFullYear() + " @ "  
-    //             + currentdate.getHours() + ":"  
-    //             + currentdate.getMinutes() + ":" 
-    //             + currentdate.getSeconds();
-
-
+  
     const product = {
         product_name: product_name,
         product_img : product_img,
@@ -57,7 +51,9 @@ const AddProduct = () => {
         user_email: user?.email,
         user_name : user?.name,
         user_uid : user?.uid,
-        promotion_product : false
+        promotion_product : false,
+        location: location ,
+        user_verify : user?.varify
     }
     
     if(!product){

@@ -6,7 +6,7 @@ const Products = () => {
     const products = useLoaderData()
 
     return (
-        <div>
+        <div className='px-3 md:px-20'>
             
               <div className=" grid md:grid-cols-3 gap-5">
                     {
