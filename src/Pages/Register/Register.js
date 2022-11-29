@@ -46,7 +46,7 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        console.log(user, );
+        
       })
       .then((error) => console.error(error));
   };

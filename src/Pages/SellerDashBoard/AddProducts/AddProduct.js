@@ -9,7 +9,7 @@ const AddProduct = () => {
   const { data: categores, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch("http://localhost:5000/category");
       const data = await res.json();
       return data;
     },
@@ -35,12 +35,13 @@ const AddProduct = () => {
     const yearOfPurchase = form.yearOfPurchase.value;
    
     let currentdate = new Date(); 
-    let datetime = "Last Sync: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+    const date = new Date().toLocaleString();
+    // let datetime = "Last Sync: " + currentdate.getDate() + "/"
+    //             + (currentdate.getMonth()+1)  + "/" 
+    //             + currentdate.getFullYear() + " @ "  
+    //             + currentdate.getHours() + ":"  
+    //             + currentdate.getMinutes() + ":" 
+    //             + currentdate.getSeconds();
 
 
     const product = {
@@ -51,7 +52,7 @@ const AddProduct = () => {
         product_price: price,
         orginal_price: orginal_price,
         yearOfPurchase: yearOfPurchase,
-        product_added_time: datetime,
+        product_added_time: date,
         condition: condition,
         user_email: user?.email,
         user_name : user?.name,

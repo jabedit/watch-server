@@ -6,7 +6,7 @@ const Category = () => {
   const { data: categores, isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch("http://localhost:5000/category");
       const data = await res.json();
       return data;
     },
@@ -21,9 +21,10 @@ const Category = () => {
   }
 
   return (
-    <div className=" bg-sky-50 py-10">
-      <h2> Popular Categories</h2>
-      <div className="grid grid-cols-3 gap-10  w-8/12   mx-auto ">
+    <div className=" bg-sky-50 py-10 px-2 py-10">
+      <h2 className=" text-xl font-bold pb-5  text-center md:w-8/12   mx-auto"> Popular Categories</h2>
+      <div className="grid grid-cols-3 gap-10  md:w-8/12   mx-auto ">
+      
         {categores.map((category) => (
           <div key={category._id}>
             <Link to={`products/${category._id}`}>

@@ -15,10 +15,16 @@ const AdminLayout = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content bg-sky-100">
             <li className=" bg-sky-50 hover:bg-white rounded-md shadow-lg  font-serif font-bold mt-3 ">
-              <Link to="/admindashbaord">Add Product</Link>
+              <Link to="/admindashbaord/allcategory">All Categories</Link>
             </li>
             <li className=" bg-sky-50 hover:bg-white rounded-md shadow-lg  font-serif font-bold mt-3 ">
-              <Link to="/admindashbaord/addcategory">Add Category</Link>
+              <Link to="/admindashbaord/allproducts">Add Products</Link>
+            </li>
+            <li className=" bg-sky-50 hover:bg-white rounded-md shadow-lg  font-serif font-bold mt-3 ">
+              <Link to="/admindashbaord/allusers">All Users</Link>
+            </li>
+            <li className=" bg-sky-50 hover:bg-white rounded-md shadow-lg  font-serif font-bold mt-3 ">
+              <Link to="/admindashbaord/allsellers">All Sellers</Link>
             </li>
             
              

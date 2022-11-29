@@ -11,6 +11,10 @@ import SellerLayout from "../../Layout/SellerLayout";
 import AddProduct from "../../Pages/SellerDashBoard/AddProducts/AddProduct";
 import AddCategory from "../../Pages/SellerDashBoard/AddCategory/AddCategory";
 import Products from "../../Pages/Products/Products";
+import AllSellers from "../../Pages/AddminDashboard/AllSellers/AllSellers";
+import AllCategory from "../../Pages/AddminDashboard/AllCaregory/AllCategory";
+import AllProducts from "../../Pages/AddminDashboard/AllProducts/AllProducts";
+import AllUsers from "../../Pages/AddminDashboard/AllUser/AllUsers";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -37,14 +41,32 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path: "/products",
-        element: <Products />
+        path: "/products/:id",
+        element: <Products />,
+        loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`)
       },
       //admin nested route
       {
         path: "/admindashbaord",
         element: <AdminLayout />,
         children: [
+          {
+            path: "/admindashbaord/allsellers",
+            element: <AllSellers />
+          },
+          {
+            path: "/admindashbaord/allcategory",
+            element: <AllCategory />
+          },
+
+          {
+            path: "/admindashbaord/allproducts",
+            element: <AllProducts />
+          },
+          {
+            path: "/admindashbaord/allusers",
+            element: <AllUsers />
+          },
           
         ],
       },
