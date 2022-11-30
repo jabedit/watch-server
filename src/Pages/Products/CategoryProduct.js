@@ -13,13 +13,14 @@ const CategoryProduct = ({ product }) => {
     yearOfPurchase,
     product_name,
     product_img,
+    product_added_time
   } = product;
 
   console.log(product);
   return (
     <div>
       
-      <div className="shadow-2xl p-5">
+      <div className="shadow-2xl p-5 rounded-md">
         <div>
           <img className="w-50 h-50 rounded-md" src={product_img} alt="" />
         </div>
@@ -43,29 +44,34 @@ const CategoryProduct = ({ product }) => {
         <hr className="my-2" />
         <div className="flex  justify-between py-1">
           <div>
-            <p className="font-bold text-xl"> Purchase of year</p>
-            <p className="text-xl text-sky-500 font-bold">{yearOfPurchase }</p>
+            <p className="text-xl font-semibold"> Purchase of year</p>
+            <p className="text-xl text-sky-500 ">{yearOfPurchase }</p>
           </div>
           <div>
-            <p className="font-bold text-xl">Post time</p>
-            <p className="text-xl text-sky-500 font-bold">{}</p>
+            <p className=" text-xl font-semibold">Post time</p>
+            <p className="text-xl text-sky-500 ">{product_added_time}</p>
           </div>
           
         </div>
         <hr className="my-2" />
-        <div className="flex  justify-between py-1">
+        <div className="flex  justify-between items-center py-1">
+          <p className="font-bold">User info : </p>
           <div className="flex items-center">
               <img src="" alt="" />
               <div>
-                <p>name</p>
+                <p>{product.displayName}</p>
                 <p>{user_email}</p>
               </div>
           </div>
           <div>
-            <p className="font-bold text-xl">Post time</p>
-            <p className="text-xl text-sky-500 font-bold">{}</p>
+            
+           <button className={ product.user_verify ?` bg-green-400 p-1 text-white rounded-full text-xs`: `bg-orange-600 rounded-full p-1 text-white text-xs`}>{product.user_verify ? `verify`: `no varify`}</button>
           </div>
           
+        </div>
+        <hr className="my-2" />
+        <div className=" flex justify-end">
+          <button className=" bg-sky-600 py-2 px-3 rounded-lg  text-white font-bold">book Now</button>
         </div>
         
       </div>

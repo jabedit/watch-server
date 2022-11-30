@@ -62,7 +62,7 @@ const Register = () => {
   };
 
 
-  const saveUser = (userInfo, userType, password, name, photoURL) =>{
+  const saveUser = (userInfo, userType, password,  photoURL, name) =>{
       const user = {
          name: name,
          email: userInfo.email,

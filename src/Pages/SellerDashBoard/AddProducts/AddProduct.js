@@ -53,7 +53,8 @@ const AddProduct = () => {
         user_uid : user?.uid,
         promotion_product : false,
         location: location ,
-        user_verify : user?.varify
+        user_verify : user?.emailVerified,
+        displayName : user?.displayName
     }
     
     if(!product){
