@@ -1,20 +1,52 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const BookingModal = ({ product }) => {
   const {
-    _id,
-    description,
-    condition,
-    orginal_price,
     product_price,
-    promotion_product,
     user_email,
-    yearOfPurchase,
     product_name,
     product_img,
-    product_added_time,
     displayName
   } = product;
+
+  const handleBooking =(e) =>{
+    e.preventDefault()
+    const form = e.target
+    const  productName = form.productName.value 
+    const  price = form.price.value 
+    const  userEmail = form.userEmail.value 
+    const  userName = form.userName.value 
+    const  userLocaton = form.userLocaton.value 
+    const  userPhone = form.userPhone.value 
+   
+    const booking = {
+        productName: productName,
+        productPrice : price,
+        userEmail: userEmail,
+        userName:userName, 
+        userLocaton:userLocaton,
+        userPhone:userPhone
+    }
+console.log(booking)
+    fetch(`http://localhost:5000/booking`, {
+        method: 'POST',
+        headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(booking),
+    })
+    .then(res => res.json())
+    .then((data) => {
+        if (data.acknowledged > 0) {
+
+          toast.success("Category is successfully added ! ");
+          form.reset();
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+  
   return (
     <div>
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
@@ -31,7 +63,7 @@ const BookingModal = ({ product }) => {
               <img className="w-full" src={product_img} alt="" />
               <h2 className="text-xl font-semibold py-5">{product_name}</h2>
             </div>
-            <form action="">
+            <form onSubmit={handleBooking} action="">
                 
               <div className="flex justify-between">
                 <div className="form-control">
@@ -40,6 +72,7 @@ const BookingModal = ({ product }) => {
                   </label>
                   <input
                     type="text"
+                    name="productName"
                     defaultValue={product_name}
                     readOnly
                     placeholder="email"
@@ -51,7 +84,7 @@ const BookingModal = ({ product }) => {
                     <span className="label-text">Product Price </span>
                   </label>
                   <input
-                    name="email"
+                    name="price"
                     type="eamil"
                     defaultValue={product_price}
                     readOnly
@@ -93,23 +126,22 @@ const BookingModal = ({ product }) => {
               <div className="flex justify-between">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text"> User Phone Number</span>
+                    <span className="label-text"> User Location</span>
                   </label>
                   <input
                     type="text"
-                   
+                    name="userLocaton"
                     placeholder="Your Location"
                     className="input input-bordered"
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">User Location </span>
+                    <span className="label-text">User Phone Number </span>
                   </label>
                   <input
                     name="userPhone"
                     type="text"
-                  
                     placeholder="User Location"
                     className="input input-bordered"
                   />
