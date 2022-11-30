@@ -12,12 +12,12 @@ const Products = () => {
             <h2 className='text-2xl font-semibold'>Category Products</h2>
               <div className=" grid md:grid-cols-3 gap-7">
                     {
-                        products.map(product => <CategoryProduct product={product} key={product._id} setProduct={setProduct}/>)
+                        products?.map(product => <CategoryProduct product={product} key={product._id} setProduct={setProduct}/>)
                     }
 
               </div>  
               <div>
-                <BookingModal product={product} ></BookingModal>
+                <BookingModal product={product} setProduct={setProduct} ></BookingModal>
               </div>
         </div>
     );

@@ -7,6 +7,7 @@ const getUserByEmail = () => {
     }
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const {data}=useQuery(['getUserByEmail'], getFecth)
+    
     return data
 };
 

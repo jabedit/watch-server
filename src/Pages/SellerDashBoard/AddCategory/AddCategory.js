@@ -15,7 +15,7 @@ const AddCategory = () => {
         if(!category){
           toast.error("Please Fill up this field ! ");
         }
-        console.log(category)
+       
         fetch(`http://localhost:5000/category`, {
             method: 'POST',
             headers: {

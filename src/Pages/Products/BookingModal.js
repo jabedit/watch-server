@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
-const BookingModal = ({ product }) => {
+const BookingModal = ({ product}) => {
+  const {user} = useContext(AuthContext)
+  
   const {
     product_price,
     user_email,
@@ -9,26 +12,31 @@ const BookingModal = ({ product }) => {
     product_img,
     displayName
   } = product;
+  console.log(product)
 
+  
   const handleBooking =(e) =>{
     e.preventDefault()
     const form = e.target
     const  productName = form.productName.value 
     const  price = form.price.value 
-    const  userEmail = form.userEmail.value 
-    const  userName = form.userName.value 
+    const  sellerEmail = form.userEmail.value 
+    const  sellerName = form.userName.value 
     const  userLocaton = form.userLocaton.value 
     const  userPhone = form.userPhone.value 
+    
    
     const booking = {
         productName: productName,
         productPrice : price,
-        userEmail: userEmail,
-        userName:userName, 
+        sellerEmail: sellerEmail,
+        sellerName:sellerName, 
         userLocaton:userLocaton,
-        userPhone:userPhone
+        userPhone:userPhone,
+        userEmail: user?.email,
+        userName : user?.displayName
     }
-console.log(booking)
+
     fetch(`http://localhost:5000/booking`, {
         method: 'POST',
         headers: {
@@ -45,6 +53,7 @@ console.log(booking)
         }
       })
       .catch((err) => console.error(err));
+      
   };
   
   return (
@@ -96,11 +105,41 @@ console.log(booking)
               <div className="flex justify-between">
                 <div className="form-control">
                   <label className="label">
+                    <span className="label-text"> Seller Email</span>
+                  </label>
+                  <input
+                    name="sellerEmail"
+                    defaultValue={user_email}
+                    readOnly
+                    type="text"
+                 
+                    placeholder="Your Location"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Seller Name </span>
+                  </label>
+                  <input
+                    name="userName"
+                    type="text"
+                    defaultValue={displayName}
+                    readOnly
+                    defaultChecked
+                    placeholder="user Name"
+                    className="input input-bordered"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <div className="form-control">
+                  <label className="label">
                     <span className="label-text"> User Email</span>
                   </label>
                   <input
                     name="userEmail"
-                    defaultValue={user_email}
+                    defaultValue={user?.email}
                     readOnly
                     type="text"
                  
@@ -115,7 +154,7 @@ console.log(booking)
                   <input
                     name="userName"
                     type="text"
-                    defaultValue={displayName}
+                    defaultValue={user?.displayName}
                     readOnly
                     defaultChecked
                     placeholder="user Name"

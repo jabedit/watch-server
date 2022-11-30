@@ -1,11 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const AddProduct = () => {
-  const {user} = useContext(AuthContext)
-  console.log(user)
+  const { user } = useContext(AuthContext);
+  const [sellerEmail, setSellerEmail] = useState([]);
+  
+  useEffect(() => {
+    if (user) {
+      fetch(`http://localhost:5000/users/getUserByEmail?email=${user?.email}`)
+        .then((res) => res.json())
+        .then((data) =>{
+          setSellerEmail(data);
+          
+        })
+        } 
+  }, [user]);
+
+  
+  // const seller_email = sellerEmail.email
+  console.log();
   // const imagesHostKey = process.env.REACT_APP_imgbb_key;
   const { data: categores, isLoading } = useQuery({
     queryKey: ["category"],
@@ -15,7 +30,7 @@ const AddProduct = () => {
       return data;
     },
   });
-  
+
   if (isLoading) {
     return (
       <div className="flex justify-center">
@@ -34,44 +49,43 @@ const AddProduct = () => {
     const orginal_price = form.orginal_price.value;
     const condition = form.condition.value;
     const yearOfPurchase = form.yearOfPurchase.value;
-    const location = form.location.value
-    
+    const location = form.location.value;
+
     const date = new Date().toLocaleString();
-  
+
     const product = {
-        product_name: product_name,
-        product_img : product_img,
-        category_id: category_id,
-        description: description,
-        product_price: price,
-        orginal_price: orginal_price,
-        yearOfPurchase: yearOfPurchase,
-        product_added_time: date,
-        condition: condition,
-        user_email: user?.email,
-        user_name : user?.name,
-        user_uid : user?.uid,
-        promotion_product : false,
-        location: location ,
-        user_verify : user?.emailVerified,
-        displayName : user?.displayName
-    }
-    
-    if(!product){
+      product_name: product_name,
+      product_img: product_img,
+      category_id: category_id,
+      description: description,
+      product_price: price,
+      orginal_price: orginal_price,
+      yearOfPurchase: yearOfPurchase,
+      product_added_time: date,
+      condition: condition,
+      user_email: user?.email,
+      user_name: user?.name,
+      user_uid: user?.uid,
+      promotion_product: false,
+      location: location,
+      user_verify: user?.emailVerified,
+      displayName: user?.displayName,
+    };
+
+    if (!product) {
       toast.error("Please Fill up this field ! ");
     }
 
     fetch(`http://localhost:5000/products`, {
-        method: 'POST',
-        headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(product),
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
     })
-    .then(res => res.json())
-    .then((data) => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.acknowledged > 0) {
-
           toast.success("Category is successfully added ! ");
           form.reset();
         }
@@ -102,28 +116,28 @@ const AddProduct = () => {
             />
           </div>
           <div className="form-control w-full max-w-xs py-2">
-          <label htmlFor="">Select Your Product Category</label>
-            <select name="category" className="select input-bordered w-full max-w-xs" required>
-            
-                {
-                    categores.map(category => <option
-                        key={category._id}
-                        value={category._id}
-                    >{category.category_name}</option>)
-                }
-                
-                
+            <label htmlFor="">Select Your Product Category</label>
+            <select
+              name="category"
+              className="select input-bordered w-full max-w-xs"
+              required
+            >
+              {categores.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.category_name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="form-control w-full max-w-xs py-2">
-            
             <label htmlFor="">Select Your Product Conditon</label>
-            <select name="condition" className="select input-bordered w-full max-w-xs">
-           
-            <option>Excelent</option>
-            <option>Good </option>
-            <option>Fire</option>
-                
+            <select
+              name="condition"
+              className="select input-bordered w-full max-w-xs"
+            >
+              <option>Excelent</option>
+              <option>Good </option>
+              <option>Fire</option>
             </select>
           </div>
           <div className="form-control w-full max-w-xs py-2">
@@ -166,9 +180,7 @@ const AddProduct = () => {
               className="input input-bordered w-full max-w-xs"
             />
           </div>
-         
-          
-          
+
           <div className="form-control w-full max-w-xs py-2">
             <label htmlFor="">Purchase year </label>
             <input
@@ -181,7 +193,11 @@ const AddProduct = () => {
           </div>
           <div className="form-control w-full max-w-xs py-2">
             <label htmlFor="">Product description </label>
-            <textarea name="description" className="textarea textarea-bordered" placeholder="Type Product description"></textarea>
+            <textarea
+              name="description"
+              className="textarea textarea-bordered"
+              placeholder="Type Product description"
+            ></textarea>
           </div>
           <input
             type="Submit"

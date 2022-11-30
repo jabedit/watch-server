@@ -24,7 +24,6 @@ const Register = () => {
     const userType = form.userType.value;
     saveUser(userType)
 
-    console.log(photoURL, name, email, password, userType);
     createUser(email, password,)
       .then((result) => {
         const user = result.user;
@@ -81,7 +80,7 @@ const Register = () => {
     })
     .then(res => res.json())
     .then(data =>{
-       console.log(data)
+ 
     })
 }
   return (

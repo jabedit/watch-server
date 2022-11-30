@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
 const CategoryProduct = ({ product , setProduct }) => {
-  console.log(product)
+ 
+  const {user} = useContext(AuthContext)
   const {
     _id,
     description,
@@ -16,7 +18,7 @@ const CategoryProduct = ({ product , setProduct }) => {
     product_added_time
   } = product;
 
-  console.log(product);
+
   return (
     <div>
       

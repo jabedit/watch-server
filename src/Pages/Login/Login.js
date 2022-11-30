@@ -22,7 +22,7 @@ const Login = () => {
     userSingUp(email, password )
     .then(result => {
         const  user = result.user
-        console.log(user);
+        
         form.reset();
         
         setError('')
@@ -42,7 +42,7 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+      
       })
       .then((error) => console.error(error));
   };
