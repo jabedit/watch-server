@@ -1,20 +1,20 @@
-## SylSeba :  [https://sylseba-7856d.web.app/](https://sylseba-7856d.web.app/)
+## watchPro :  [https://sylseba-7856d.web.app/](https://sylseba-7856d.web.app/)
 
 #### site description
-This site is a service related site. Through which people can servicing electronics products right at home
+This is a watch used product reseller market service website, here any user can buy many used products at low price.
 
 ##### fetures
 * The site has 5 pages
-* The services page contains many  services
+* There is a home page with a banner and category
 * Here is a blog page where technology related updates come
-* Here is an add service  page . user add service 
-* Here is an my review page . user seen her review.
+* Sellers and resellers are controlled through the admin dashboard section
 
 ##### client site  Uses Technology
 *  Html , css , javascript 
-*  laibary : ract, tailwind, rect to photo vew, 
+*  laibary : ract, tailwind, react query, react-icons, 
 ##### server site  Uses Technology
 * express js, node mongodb, 
 ##### Authentication Technology
 * firebase authentication system
+* JWTauthentication system
 * user login and singup system added this website
