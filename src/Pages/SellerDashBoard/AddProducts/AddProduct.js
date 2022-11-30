@@ -204,6 +204,7 @@ const AddProduct = () => {
             value="Submit"
             className="input input-bordered bg-sky-600 text-white font-bold text-lg w-full max-w-xs"
           />
+          {/* product form */}
         </form>
       </div>
     </div>
