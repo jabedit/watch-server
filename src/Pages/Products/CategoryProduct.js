@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryProduct = ({ product }) => {
+const CategoryProduct = ({ product , setProduct }) => {
   console.log(product)
   const {
     _id,
@@ -71,7 +71,7 @@ const CategoryProduct = ({ product }) => {
         </div>
         <hr className="my-2" />
         <div className=" flex justify-end">
-          <button className=" bg-sky-600 py-2 px-3 rounded-lg  text-white font-bold">book Now</button>
+          <label onClick={()=>setProduct(product)} htmlFor="my-modal-3" className=" bg-sky-600 py-2 px-3 rounded-lg  text-white font-bold">book Now</label>
         </div>
         
       </div>
