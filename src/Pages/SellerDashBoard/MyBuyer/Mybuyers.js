@@ -4,7 +4,7 @@ const Mybuyers = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <h2 className="text-2xl text-center font-bold">My Buyer</h2>
+        <h2 className="text-2xl text-center font-bold pb-5">My Buyer</h2>
         <table className="table w-full">
           <thead>
             <tr>
@@ -21,21 +21,10 @@ const Mybuyers = () => {
               <td>Cy Ganderton</td>
               <td>Quality Control Specialist</td>
               <td>Blue</td>
+              <td>Blue</td>
             </tr>
 
-            <tr className="hover">
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+            
           </tbody>
         </table>
       </div>

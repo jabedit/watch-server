@@ -15,6 +15,7 @@ import AllSellers from "../../Pages/AddminDashboard/AllSellers/AllSellers";
 import AllCategory from "../../Pages/AddminDashboard/AllCaregory/AllCategory";
 import AllProducts from "../../Pages/AddminDashboard/AllProducts/AllProducts";
 import AllUsers from "../../Pages/AddminDashboard/AllUser/AllUsers";
+import Mybuyers from "../../Pages/SellerDashBoard/MyBuyer/Mybuyers";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
           {
             path: "/sellerdashbaord/addcategory",
             element: <AddCategory />
+          },
+          {
+            path: "/sellerdashbaord/mybuyers",
+            element: <Mybuyers />
           },
         ],
       },

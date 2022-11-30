@@ -19,6 +19,9 @@ const SellerLayout = () => {
               <li className=" bg-sky-50 hover:bg-white rounded-md shadow-lg  font-serif font-bold mt-3 ">
                 <Link to="/sellerdashbaord/addcategory">Add Category</Link>
               </li>
+              <li className=" bg-sky-50 hover:bg-white rounded-md shadow-lg  font-serif font-bold mt-3 ">
+                <Link to="/sellerdashbaord/mybuyers">My Buyers</Link>
+              </li>
             </ul>
           </div>
         </div>
